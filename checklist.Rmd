@@ -29,7 +29,7 @@ daten <- read_csv(here("data", "daten.csv"), col_types = cols(.default = col_cha
 ```{r}
 print_secret <- function(which, secret_file = here("data", "secrets.yml")){
   if(fs::file_exists(secret_file))secrets <- yaml::read_yaml(secret_file)
-  else return("")
+  else secrets <- yaml::read_yaml(here("data", "secrets_fake.yml"))
   secret <- simplify(secrets[[which]], "chr")
   str_c("(", str_c(str_c(names(secret), ": ", unname(secret)), collapse = ", "), ")")
 }
