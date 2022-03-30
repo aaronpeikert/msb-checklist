@@ -1,0 +1,9 @@
+data/secrets*.yml
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+*.tex
+*.pdf
+*.log

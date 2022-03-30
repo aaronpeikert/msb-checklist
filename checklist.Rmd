@@ -1,0 +1,113 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"
+params:
+  datum: 05.04.2022
+  dozent: Aaron
+papersize: a4
+geometry: "left=2cm,right=2cm,top=1cm,bottom=2cm"
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(tidyverse)
+knitr::opts_chunk$set(include = FALSE)
+```
+
+```{r}
+themen <- read_csv(here("data", "themen.csv"), col_types = cols(.default = col_character()))
+daten <- read_csv(here("data", "daten.csv"), col_types = cols(.default = col_character())) %>% 
+  filter(datum == params$datum, dozent == params$dozent) %>% 
+  mutate(Start = lubridate::dmy_hm(str_c(datum, " ", zeit)),
+         Ende = hms::as_hms(Start + lubridate::minutes(90)),
+         Start = hms::as_hms(Start))
+```
+
+```{r}
+print_secret <- function(which, secret_file = here("data", "secrets.yml")){
+  if(fs::file_exists(secret_file))secrets <- yaml::read_yaml(secret_file)
+  else return("")
+  secret <- simplify(secrets[[which]], "chr")
+  str_c("(", str_c(str_c(names(secret), ": ", unname(secret)), collapse = ", "), ")")
+}
+```
+
+
+```{r}
+Hauptthema <- themen %>%
+  filter(Datum == params$datum) %>% pull(Hauptthema) %>% str_c("Übung Methoden: ", .)
+Unterthemen <- themen %>%
+  filter(Datum == params$datum) %>% pull(Unterthemen)
+```
+
+---
+title: "`r Hauptthema`"
+subtitle: "`r Unterthemen`"
+date: "`r params$datum`"
+---
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+daten %>%
+  select(Datum = datum, Start, Ende, Kurs = kurs, Raum = raum) %>% 
+  pander::pander()
+```
+
+## Zuhause
+
+* [Folien von Trainex](https://www.trainex25.de/msb-trainex/cfm/archiv/ausgabe.cfm?tid1=1030&1648632557805&TokCF19=0T8632557710&IDphp17=3P557710&sec18m=7S325577108632557710&nureinthema=1&dozdirect=249) auf USB-Stick herunterladen
+* USB stick mitnehmen
+
+## An der MSB
+
+* Covid Eingangskontrolle
+* Connect holen
+* Anwesenheitsliste holen
+* Daten Anwesenheitsliste ergänzen
+
+## Im Raum
+
+* PC starten
+* Lüften
+* In PC Einloggen `r print_secret("pc")`
+* Connect aufbauen
+* In Teams Einloggen `r print_secret("msteams")`
+
+## Anwesenheit
+
+* Ankündigen: Als Anwesend gilt nur wer auf der Liste ist oder in MS Team die *gesamte* Zeit die Kamera anhat
+* Anwesenheitsliste ausgeben
+
+```{r}
+anmerkungen <- na.omit(c(themen$Anmerkungen, daten$anmerkungen))
+```
+
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+if(length(anmerkungen) > 0){
+  cat("## Anmerkungen", sep = "\n")
+  cat(anmerkungen, sep = "\n\n")
+}
+```
+
+## Schluss
+
+* Teams call beenden
+* Teams Teilnehmer in Anwesenheitsliste nachtragen
+* Vom PC abmelden
+* Connect einpacken
+* Anwesenheitsliste abgeben
+* ggf. Connect Abgeben
+
+## Nächster Termin
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+themen %>% 
+  mutate(Datum = lubridate::dmy(Datum)) %>% 
+  filter(Datum > lubridate::dmy(params$datum)) %>% 
+  head(1) %>% 
+  pander::pander()
+```
+

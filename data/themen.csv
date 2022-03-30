@@ -1,0 +1,16 @@
+Datum,Hauptthema,Unterthemen,Anmerkungen
+05.04.2022,Einführung und Grundlagen,"Grundlagen der Inferenzstatistik, Prüfgröße, Verteilung, Nullhypothese und Alternativhypothese, Binomialverteilung, t-Test, Signifikanzniveau, Teststärke ",Das erste Thema
+12.04.2022,Grundlagen,"Grundlagen der Inferenzstatistik, Prüfgröße, Verteilung, Nullhypothese und Alternativhypothese, Binomialverteilung, t-Test, Signifikanzniveau, Teststärke ",
+19.04.2022,Chi-Quadrat Test,"Chi-Quadrat-Anpassungstest, Vierfelder Chi-Quadrat-Test, Chi-Quadrat-Test, McNemar Test",
+26.04.2022,Korrelation und lineare Regression,"Kovarianz, Korrelation, einfache lineare Regression, Standardschätzfehler, Determinationskoeffizient, Residualvarianz, F-Test",
+03.05.2022,Multiple Regression,"(Semi)partialkorrelation, Schätzung, Inferenz, Interpretation",
+10.05.2022,Varianzanalyse (einfaktoriell),"Schätzung, Inferenz, Interpretation, Effektstärke",
+17.05.2022,Kontrastanalyse und Post-hoc Tests,"Kontrastanalyse, Post-hoc-Tests",
+24.05.2022,Varianzanalyse (zweifaktoriell),"Schätzung, Inferenz, Interpretation, Effektstärke, Interaktion",
+31.05.2022,Varianzanalyse (mit Messwiederholung),"Schätzung, Inferenz, Interpretation, Effektstärke",
+10.06.2022,Fragestunde/Zusammenfassung/Klausurvorbereitung,,
+14.06.2022,Hauptkomponentenanalyse,"Faktormodell, Hauptkomponentenanalyse, Extraktion, Rotation, Interpretation",
+21.06.2022,ALM,"Allgemeines lienares Modell, Dummy-Codierung, Effekt-Codierung, (Teststärke) ",
+28.06.2022,Bayesianische Statistik,"Grundlagen der Bayesianischen Statistik, Prior, Posterior, Bayes Faktor, Interpretation von Wahrscheinlichkeiten, Satz von Bayes",
+05.07.2022,Non-parametrische Statistik,"Vorzeichen-Test, Mann-Whitney U-Test, Rangkorrelation",
+12.07.2022,Fragestunde/Zusammenfassung/Klausurvorbereitung,,
