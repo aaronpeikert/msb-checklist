@@ -35,12 +35,14 @@ print_secret <- function(which, secret_file = here("data", "secrets.yml")){
 }
 ```
 
-
 ```{r}
 Hauptthema <- themen %>%
-  filter(Datum == params$datum) %>% pull(Hauptthema) %>% str_c("Übung Methoden: ", .)
+  filter(lubridate::dmy(Datum) <= lubridate::dmy(params$datum)) %>%
+  pull(Hauptthema) %>% 
+  str_c("Übung Methoden: ", .)
 Unterthemen <- themen %>%
-  filter(Datum == params$datum) %>% pull(Unterthemen)
+  filter(lubridate::dmy(Datum) <= lubridate::dmy(params$datum)) %>%
+  pull(Unterthemen)
 ```
 
 ---
